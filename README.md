@@ -45,11 +45,6 @@ A Single Page Application built with Angular 7 to manage a list of people with f
 - Angular Frontend: http://localhost:4200
 - JSON Server API: http://localhost:3000/people
 
-
-4. Open your browser and navigate to:
-- Angular Frontend: http://localhost:4200
-- JSON Server API: http://localhost:3000/people
-
 ## Development Commands
 
 - **Start both servers:** `npm start`
