@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <h4>
+            <i class="fas fa-{{ isAddMode ? 'plus-circle' : 'edit' }} mr-2"></i>
+            {{ isAddMode ? 'Add New Person' : 'Edit Person' }}
+          </h4>
+        </div>
+        <div class="card-body">
+          <div *ngIf="loading" class="text-center py-5">
+            <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
+            <p>Loading person data...</p>
+          </div>
+          
+          <div *ngIf="error" class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle mr-2"></i> {{ error }}
+          </div>
+          
+          <form [formGroup]="personForm" (ngSubmit)="onSubmit()" *ngIf="!loading">
+            <div class="form-group">
+              <label for="firstName"><i class="fas fa-user mr-1"></i> First Name</label>
+              <input type="text" id="firstName" formControlName="firstName" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="Enter first name" />
+              <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="lastName"><i class="fas fa-user mr-1"></i> Last Name</label>
+              <input type="text" id="lastName" formControlName="lastName" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Enter last name" />
+              <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email"><i class="fas fa-envelope mr-1"></i> Email</label>
+              <input type="email" id="email" formControlName="email" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter email address" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Please enter a valid email address</div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="age"><i class="fas fa-birthday-cake mr-1"></i> Age</label>
+              <input type="number" id="age" formControlName="age" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && f.age.errors }" placeholder="Enter age" />
+              <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                <div *ngIf="f.age.errors.required">Age is required</div>
+                <div *ngIf="f.age.errors.min">Age must be at least 1</div>
+                <div *ngIf="f.age.errors.max">Age cannot be more than 120</div>
+              </div>
+            </div>
+            
+            <div class="form-group d-flex justify-content-between mt-4">
+              <a routerLink="/people" class="btn btn-secondary">
+                <i class="fas fa-arrow-left mr-1"></i> Cancel
+              </a>
+              <button [disabled]="loading" class="btn btn-primary">
+                <i *ngIf="!loading" class="fas fa-save mr-1"></i>
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                {{ isAddMode ? 'Create Person' : 'Update Person' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

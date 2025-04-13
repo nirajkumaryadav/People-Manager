@@ -1,0 +1,18 @@
+{
+  "people": [
+    {
+      "id": "a2b9z",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "age": 30
+    },
+    {
+      "id": "f4sd8",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane@example.com",
+      "age": 25
+    }
+  ]
+}
